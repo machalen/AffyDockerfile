@@ -25,17 +25,7 @@ ENV PATH=pkg-config:$PATH
 RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite(pkgs=c("sva","Biobase","limma", "BiocGenerics","affxparser","affy", "affyPLM", "aroma.light", "gcrma", "oligo", "oligoClasses", "pdInfoBuilder", "preprocessCore", "AffymetrixDataTestFiles", "DNAcopy"))'
 
 #Install packages from CRAN
-RUN install2.r --error --deps TRUE \
-    R.utils \
-    aroma.affymetrix \
-    data.table \
-    gtools \
-    Rcpp \
-    RColorBrewer \
-    gplots \
-    scatterplot3d \
-  
-  rm -rf /tmp/downloaded_packages
+RUN Rscript -e 'install.packages(c("R.utils","aroma.affymetrix","data.table", "gtools", "Rcpp","RColorBrewer", "gplots","scatterplot3d"))'
 
 #Vennerable has to be installed from a website repo
 RUN Rscript -e 'install.packages("Vennerable", repos="http://R-Forge.R-project.org")'
