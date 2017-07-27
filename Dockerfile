@@ -32,4 +32,4 @@ RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite(pkgs=c("
 RUN Rscript -e 'install.packages(c("R.utils","aroma.affymetrix","data.table", "gtools", "Rcpp","RColorBrewer", "gplots","scatterplot3d"))'
 
 #Define the user in order to be the oxner of the created files
-USER 10008:9001
+#USER 10008:9001
