@@ -12,6 +12,10 @@
 #R image to be the base in order to build our new image
 FROM r-base:3.4.0
 
+#Creem els directoris per utilitzar amb singularity
+RUN mkdir /home/marnal
+RUN mkdir /projects/sam
+
 #Install Ubuntu extensions in order to run r
 RUN apt-get update && apt-get install -y \
     r-cran-xml \
@@ -26,9 +30,6 @@ RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite(pkgs=c("
 
 #Install packages from CRAN
 RUN Rscript -e 'install.packages(c("R.utils","aroma.affymetrix","data.table", "gtools", "Rcpp","RColorBrewer", "gplots","scatterplot3d"))'
-
-#Vennerable has to be installed from a website repo
-RUN Rscript -e 'install.packages("Vennerable", repos="http://R-Forge.R-project.org")'
 
 #Define the user in order to be the oxner of the created files
 USER 10008:9001
