@@ -14,7 +14,6 @@ FROM r-base:3.4.0
 
 #Creem els directoris per utilitzar amb singularity
 RUN mkdir /home/marnal
-RUN mkdir /projects/sam
 
 #Install Ubuntu extensions in order to run r
 RUN apt-get update && apt-get install -y \
