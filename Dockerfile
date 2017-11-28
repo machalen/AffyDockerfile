@@ -1,18 +1,15 @@
 #################################################################
 # Dockerfile
 #
-# Version:          1
-# Software:         R
-# Description:      R and necessary packages for the analysis of Affymetrix microarrays
-# Website:          
+# Description:      R and required packages for the analysis of Affymetrix microarrays
 # Tags:             None, for the moment
-# Base Image:       R
+# Base Image:       r-base:3.4.0
 #################################################################
 
 #R image to be the base in order to build our new image
 FROM r-base:3.4.0
 
-#Creem els directoris per utilitzar amb singularity
+#Create directories to save results
 RUN mkdir /home/marnal
 RUN mkdir projects
 RUN mkdir /projects/sam
@@ -32,5 +29,5 @@ RUN Rscript -e 'source("https://bioconductor.org/biocLite.R"); biocLite(pkgs=c("
 #Install packages from CRAN
 RUN Rscript -e 'install.packages(c("R.utils","aroma.affymetrix","data.table", "gtools", "Rcpp","RColorBrewer", "gplots","scatterplot3d"))'
 
-#Define the user in order to be the oxner of the created files
-#USER 10008:9001
+#Set wokingDir in /
+WORKDIR /
